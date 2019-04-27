@@ -25,7 +25,7 @@ def train(max_epoch,nfolds,batch_size):
     """
     Trains a new model based on the inputs  
     """
-    msg = "Model a new Trained"
+    msg = "A New Model has beenTrained"
     result = {'message':msg, 'max_epoch': max_epoch,'nfolds':nfolds,
               'batch_size':batch_size}
     dgabot.train_model(max_epoch,nfolds,batch_size)
