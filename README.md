@@ -18,7 +18,7 @@ Import, instantiate, predict:
       dgabot.load_model()
       dgabot.predict('www.googlexx111.com') 
       
-Note: dgabot.predict() returns a dictionary of the form {'class': 0} or {'class': 1}, depending on the predited class of the input. 
+Note: dgabot.predict() returns a dictionary of the form {'class': 0} or {'class': 1}, depending on the predicted class of the input. 
 
 
 DGABot Microservice Usage Example
