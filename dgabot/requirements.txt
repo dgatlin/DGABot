@@ -1,0 +1,7 @@
+numpy
+pandas
+keras 
+sklearn
+tldextract
+flask==0.12.2
+tensorflow
