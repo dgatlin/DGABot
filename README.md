@@ -25,6 +25,7 @@ DGABot Microservice Usage Example
 ---------------------------------
 Build, run, predict: 
 
+      $ cd dgabot
       $ docker build --tag=dgabot .
       $ docker run -p 5000:5000 dgabot
       > Running on http://127.0.0.1:5000/
