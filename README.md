@@ -8,9 +8,10 @@ The main goals of this project are to:
 
 These goals are achieved through the use a Long short-term memory (LSTM) Artificial Recurrent Reural Network, derived from the field of deep learning. As well as Flask; a micro web framework written in Python.
 
+
 DGABot Class Usage Example
 --------------------------
-Import, instantiate, predict::
+Import, instantiate, predict:
       
       from dgabot import DGABot
       dgabot = DGABot() 
@@ -19,5 +20,19 @@ Import, instantiate, predict::
       
 Note: dgabot.predict() returns a dictionary of the form {'class': 0} or {'class': 1}, depending on the predited class of the input. 
 
+
 DGABot Microservice Usage Example
 ---------------------------------
+Build, run, predict: 
+
+      $ docker build --tag=dgabot .
+      $ docker run -p 5000:5000 dgabot
+      > Running on http://127.0.0.1:5000/
+      
+      From the browser: 
+      http://127.0.0.1:5000/predict/www.googlexx111.com
+
+
+More Information
+----------------
+Python 3.6 + is fully supported.  The application was fully tested with Python 3.6.2
