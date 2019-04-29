@@ -25,7 +25,7 @@ def train(max_epoch,nfolds,batch_size):
     """
     Trains a new model based on the inputs  
     """
-    msg = "A New Model has beenTrained"
+    msg = "A New Model has been Trained"
     result = {'message':msg, 'max_epoch': max_epoch,'nfolds':nfolds,
               'batch_size':batch_size}
     dgabot.train_model(max_epoch,nfolds,batch_size)
@@ -58,4 +58,4 @@ def predict(url):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')

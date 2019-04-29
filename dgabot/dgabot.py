@@ -164,7 +164,7 @@ class DGABot:
            <https://github.com/endgameinc/dga_predict> 
         """
         
-        path = "./dga-dataset.txt"
+        path = "dga-dataset.txt"
         self.load_data(path)
     
         # Extract data and labels
@@ -261,7 +261,7 @@ class DGABot:
             y = list(self.df['Class'])
       
         else: 
-            path = "./dga-dataset.txt"
+            path = "dga-dataset.txt"
             self.load_data(path)
             X = list(self.df['Domain'])
             y = list(self.df['Class'])
@@ -307,7 +307,7 @@ class DGABot:
         if self.df is not None: 
             X = list(self.df['Domain'])
         else: 
-            path = "./dga-dataset.txt"
+            path = "dga-dataset.txt"
             self.load_data(path)
             X = list(self.df['Domain'])
        
