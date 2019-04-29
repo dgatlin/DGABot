@@ -327,17 +327,6 @@ class DGABot:
         return {'class': ypred}
     
     
-    def dgab_prediction_to_json(self,prediction): 
-        """
-        Given a prediction DataFrame obtained from calling mmb_predict() convert 
-        primary fields into a dict that can be easily converted to a 
-        search-friendly json representation for a technology like a No-SQL 
-        database or technology like Elasticsearch.
-        :param prediction: 
-        :return: a dictionary of statistics and classification results for the sample
-        """
-        #TODO implement the return and error handing funcitonality
-    
     
     
     

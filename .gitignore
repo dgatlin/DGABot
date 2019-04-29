@@ -10,4 +10,4 @@ data/.DS_Store
 dgabot/.DS_Store
 dgabot/__pycache__/dgabot.cpython-36.pyc
 ddgabot/__pycache__/utils.cpython-36.pyc
-
+__pycache__/
