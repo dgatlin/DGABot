@@ -19,21 +19,26 @@ from utils import topLevel, validChars
 
 
 class DGABot: 
-    
+#TODO implement the logging funcitonality accross all methods 
     
     def __init__(self,data_path=None,model_path=None,df=None): 
         """
-        Constructor to set up path vaiables for model and sample data and initialized object. 
+        Constructor to set up path vaiables for model and sample data and 
+        initialized object. 
 
-            
         Parameters
         ----------
-        data_path: 
+        data_path: str or None 
+            This variable is the path to the location of where the data is stored
+            on disk. 
             
-        model_path: 
+        model_path: str or None 
+            This variable is the path to the location of where the produciton 
+            model is saved on disk. 
             
-        df: 
-        
+        df: pandas dataframe or None 
+            This will allow the the object to be instantiated with a pre determined 
+            dataframe 
         """
         #self.logger = logging.getLogger()
         
@@ -48,8 +53,6 @@ class DGABot:
         Resets object's state to clear our all model internals created after 
         loading state from dist
         
-        Parameters
-        ----------
         """
         self.model = None 
         self.modeldata = None
@@ -59,15 +62,37 @@ class DGABot:
         
     def set_paths(self, data_path=None, model_path=None): 
         """
-        Helper function to set path 
-        :param data_path: 
-        :param model_path: 
+        Helper function to set paths 
+ 
+    
+        Parameters
+        ----------
         """
-        #TODO 
+        #TODO implement the return and error handing funcitonality
 
          
     def build_model(self, max_features, maxlen):
-        """Build LSTM model"""
+        """
+        Build LSTM model and  to configure the learning process, which is done
+        via the compile method.
+        
+        Parameters
+        ----------
+        max_features: int 
+             The number of rows of the embedding matrix
+        
+        maxlen: int 
+            Maximum length of all sequences.
+        
+        Returns
+        -------
+        model: The Keras Sequential model is a linear stack of layers.
+        
+        References
+        ----------
+        .. [1] `Getting started with the Keras Sequential model
+               <https://keras.io/getting-started/sequential-model-guide/>`_
+        """
         model = Sequential()
         model.add(Embedding(max_features, 128, input_length=maxlen))
         model.add(LSTM(128))
@@ -101,7 +126,7 @@ class DGABot:
         
         df = df.drop(['Origin'], axis = 1)
 
-        # drip rows where the class is null 
+        # drop rows where the class is null 
         nan_rows = df[df['Class'].isnull()].index
         i = list(nan_rows)
         df = df.drop(df.index[i])
@@ -115,6 +140,22 @@ class DGABot:
     def train_model(self,max_epoch, nfolds, batch_size): 
         """
         This function builds the models based on the classifier and labels.
+        
+        Parameters
+        ----------
+        max_epoch: int
+            One Epoch is when an ENTIRE dataset is passed forward and backward 
+            through the neural network only ONCE
+        
+        nfolds: int 
+            The number of batches needed to complete one epoch.
+        
+        batch_size: int 
+            Total number of training examples present in a single batch.
+        
+        Returns
+        -------
+            A trained Keras model 
         
         References
         ----------
@@ -191,7 +232,8 @@ class DGABot:
         :return: True if it succeeded and False otherwise.
         """
         self.model.model.save('saved_model.h5')
-
+        #TODO implement the return and error handing funcitonality
+        
         
     def load_model(self): 
         """
@@ -199,6 +241,7 @@ class DGABot:
         :return: True for success, False for failure 
         """
         self.model = load_model('saved_model.h5')
+        #TODO implement the return and error handing funcitonality 
         
     
     def delete_model(self, modelRebuild=False, exclude=None, labeled_df=None): 
@@ -206,6 +249,7 @@ class DGABot:
         Initiates the machine learning models used in order to begin making predictions 
         """
         self.model = None
+        #TODO implement the return and error handing funcitonality
         
         
     def evaluate_model(self): 
@@ -247,8 +291,18 @@ class DGABot:
         
     def predict(self,y):
         """
-        Given a url input, make a prediction on whether 
-        it is made by a dga or not and provide featureprint and key statistics.
+        Given a url input determine if the url is legitimate or a DGA generated
+        domain
+        
+        Parameters
+        ----------
+        y: str 
+            The targert url on which the prediction will be made 
+            
+        Retrurns
+        --------
+        dict: The predicted class of input url 
+        
         """
         if self.df is not None: 
             X = list(self.df['Domain'])
@@ -282,7 +336,7 @@ class DGABot:
         :param prediction: 
         :return: a dictionary of statistics and classification results for the sample
         """
-        #TOODO
+        #TODO implement the return and error handing funcitonality
     
     
     
