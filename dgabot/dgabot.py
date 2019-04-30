@@ -183,7 +183,7 @@ class DGABot:
         model = self.build_model(max_features, maxlen)
         
         print('Training model')
-        model.fit(X_train, y_train, nb_epoch=1)
+        model.fit(X_train, y_train, nb_epoch=3)
         
         self.model = model 
       
@@ -206,9 +206,9 @@ class DGABot:
         #TODO implement the return and error handing funcitonality 
         
     
-    def delete_model(self, modelRebuild=False, exclude=None, labeled_df=None): 
+    def delete_model(self): 
         """
-        Initiates the machine learning models used in order to begin making predictions 
+        Sets model to none 
         """
         self.model = None
         #TODO implement the return and error handing funcitonality
