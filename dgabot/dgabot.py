@@ -9,7 +9,6 @@ from keras.layers.core import Dense, Dropout, Activation
 from keras.layers.embeddings import Embedding 
 from keras.layers.recurrent import LSTM 
 from keras.models import load_model
-import sklearn
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import recall_score, precision_score, accuracy_score,f1_score, roc_auc_score
 #from io import StringIO
@@ -137,22 +136,16 @@ class DGABot:
         self.df = df 
     
     
-    def train_model(self,max_epoch, nfolds, batch_size): 
+    def train_model(self, nb_epoch): 
         """
         This function builds the models based on the classifier and labels.
         
         Parameters
         ----------
-        max_epoch: int
+        nb_epoch: int
             One Epoch is when an ENTIRE dataset is passed forward and backward 
             through the neural network only ONCE
-        
-        nfolds: int 
-            The number of batches needed to complete one epoch.
-        
-        batch_size: int 
-            Total number of training examples present in a single batch.
-        
+                
         Returns
         -------
             A trained Keras model 
@@ -183,49 +176,18 @@ class DGABot:
     
         # Convert labels to 0-1
         y = list(self.df['Class'])
-      
-        for fold in range(nfolds):
-            print("fold %u/%u" % (fold+1, nfolds))
-            X_train, X_test, y_train, y_test, _, label_test = train_test_split(X, y, labels, 
-                                                                               test_size=0.2)
-    
-            print('Build model...')
-            model = self.build_model(max_features, maxlen)
-    
-            print("Train...")
-            X_train, X_holdout, y_train, y_holdout = train_test_split(X_train, 
-                                                                      y_train, test_size=0.2)
-            best_iter = -1
-            best_auc = 0.0
-    
-            for ep in range(max_epoch):
-                model.fit(X_train, y_train, batch_size=batch_size, nb_epoch=1)
-    
-                t_probs = model.predict_proba(X_holdout)
-                t_auc = roc_auc_score(y_holdout, t_probs)
-                
-                
-                print('Epoch %d: auc = %f (best=%f)' % (ep, t_auc, best_auc))
-    
-                if t_auc > best_auc:
-                    best_auc = t_auc
-                    best_iter = ep
-                                        
-                    probs = model.predict_proba(X_test)
         
-                    print(sklearn.metrics.confusion_matrix(y_test, probs > .5))
-                    
-                    print("Saving the Better Model")
-                    print("t_auc = " + str(t_auc))
-                    print("best_auc = " + str(best_auc))
-                    self.model = model 
-                    
-                else:
-                    # No longer improving...break and calc statistics
-                    if (ep-best_iter) > 2:
-                        break
-    
- 
+        X_train, X_test, y_train, y_test, _, label_test = train_test_split(X, y, labels, 
+                                                                               test_size=0.2)
+        print('Build model...')
+        model = self.build_model(max_features, maxlen)
+        
+        print('Training model')
+        model.fit(X_train, y_train, nb_epoch=1)
+        
+        self.model = model 
+      
+     
     def save_model(self): 
         """
         Saves all necessary model state information for classification work to disk.
@@ -325,10 +287,3 @@ class DGABot:
         ypred = ypred.item(0)
         
         return {'class': ypred}
-    
-    
-    
-    
-    
-    
-    
