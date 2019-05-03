@@ -1,7 +1,7 @@
 # DGABot Microservice
 
 The main goals of this project are to:
-* Provide a powerful tool for detecting urls created with Domain Generation Algorithms
+* Provide a powerful Machine Learning tool for detecting urls created with Domain Generation Algorithms
 * Train and evaluate a classifier aimed at discriminating between legitimate and DGA domains.
 * Deploy the production model by providing an inference API as a REST service. 
 * Build a docker image containing the application, production model and any resources to run as a micro-service.
