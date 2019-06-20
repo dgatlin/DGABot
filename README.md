@@ -12,12 +12,12 @@ These goals are achieved through the use a Long short-term memory (LSTM) Artific
 DGABot Class Usage Example
 --------------------------
 Import, instantiate, predict:
-'''python      
+     
       from dgabot import DGABot
       dgabot = DGABot() 
       dgabot.load_model()
       dgabot.predict('www.googlexx111.com') 
-'''      
+     
 Note: dgabot.predict() returns a dictionary of the form {'class': 0} or {'class': 1}, depending on the predicted class of the input. 
 
 
