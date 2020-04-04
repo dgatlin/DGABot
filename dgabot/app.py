@@ -17,7 +17,7 @@ def index():
     """
     Base Path 
     """
-    return "Cybersecurity + Machine Leanring Rocks!"
+    return "Cybersecurity + Machine Leanring"
 
 
 @app.route('/train/<int:max_epoch>/<int:nfolds>/<int:batch_size>')
@@ -26,8 +26,11 @@ def train(max_epoch,nfolds,batch_size):
     Trains a new model based on the inputs  
     """
     msg = "A New Model has been Trained"
-    result = {'message':msg, 'max_epoch': max_epoch,'nfolds':nfolds,
-              'batch_size':batch_size}
+    result = {'message':msg, 
+              'max_epoch': max_epoch,
+              'nfolds':nfolds,
+              'batch_size':batch_size
+              }
     dgabot.train_model(max_epoch,nfolds,batch_size)
     return jsonify(result)
 
