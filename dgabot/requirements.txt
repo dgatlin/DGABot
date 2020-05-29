@@ -3,5 +3,5 @@ pandas
 keras 
 sklearn
 tldextract
-flask==0.12.2
+flask==1.0
 tensorflow
